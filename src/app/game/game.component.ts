@@ -31,7 +31,6 @@ export class GameComponent {
 
   newGame() {
     this.game = new Game();
-    console.log(this.game);
   }
 
   takeCard() {
@@ -54,6 +53,9 @@ export class GameComponent {
     });
 
     dialogRef.afterClosed().subscribe((name: string) => {
+      if (!name) {
+        return;
+      }
       this.game.players = [...this.game.players, name];
       console.log(this.game.players);
     });
