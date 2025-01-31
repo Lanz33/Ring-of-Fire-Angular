@@ -1,0 +1,65 @@
+.field{
+    width: 100vw;
+    height: 100vh;
+    max-width: 100%;
+    background-image: url('./../../../public/assets/img/background_cards.png');
+    background-size: cover;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.card-stack{
+    position: relative;
+    img {
+        position: absolute;
+        width: 120px;
+        
+    }
+    .top-card{
+        cursor: pointer;
+        transition: all 0.125s ease-in-out;
+        &:hover{
+            transform: scale(1.1) translateY(-10px);
+        }
+   
+    }
+}
+
+.take-card{
+    animation: pick-card-animation 1s ease-in-out;
+   
+    transform: scale(1.4) translateX(-120px) translateY(-180px) rotate3d(1, 1, 1, 350deg);
+}
+
+.played-Cards{
+    transform: scale(1.4) translateX(-230px) translateY(-180px) rotate(350deg);
+}
+
+@keyframes pick-card-animation {
+    0% {
+        transform: scale(1);
+    }
+    40% {
+        transform: scale(1.7);
+    }
+    50% {
+        transform: scale(1.7);
+    }
+    100% {
+        transform: scale(1.4) translateX(-120px) translateY(-180px) rotate3d(1, 1, 1, 350deg);
+    }
+}
+
+.player-position {
+    position: absolute;
+    right: 0;
+    background-color: rgba(0, 0, 0, 0);
+}
+
+.add-player{
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+    background-color: rgba(0, 0, 0, 0.3);
+}
