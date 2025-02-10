@@ -5,11 +5,15 @@
     <div class="card-stack">
         <img [ngStyle]="{'right.px': i * 10}" *ngFor="let c of [0, 1, 2, 3]; let i = index"
             src="assets/img/card_cover.png" alt="Card Stack">
-        <img (click)="takeCard()" class="top-card" style="right:40px" src="assets/img/card_cover.png" alt="Card Stack">
+
+        <img (click)="takeCard()" class="top-card" style="right:40px" src="assets/img/card_cover.png"
+            alt="erste verdeckte Karte">
+
         <img *ngFor="let card of game.playedCards" class="played-Cards" src="/assets/img/cards/{{ card }}.png"
-            alt="Card Stack">
-        <img (click)="takeCard()" *ngIf="takeCardAnimation" class="take-card" style="right:40px"
-            src="assets/img/cards/{{ currentCard }}.png" alt="Card Stack">
+            alt="played cards">
+
+        <img (click)="takeCard()" *ngIf="pickCardAnimation" class="pick-card" style="right:40px"
+            src="assets/img/cards/{{ currentCard }}.png" alt="animiated card">
 
     </div>
 

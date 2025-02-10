@@ -16,40 +16,42 @@ import { DialogAddPlayerComponent } from '../dialog-add-player/dialog-add-player
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class GameComponent {
-  takeCardAnimation = false;
+  pickCardAnimation: boolean = false;
   game: Game = new Game;
-  currentCard: string = '';
+  currentCard: string = "ace";
 
-  readonly animal = signal('');
   readonly name = model('');
   readonly dialog = inject(MatDialog);
 
 
-  ngOnInit(): void {
-    this.newGame();
-  }
 
   newGame() {
     this.game = new Game();
   }
 
   takeCard() {
-    if (!this.takeCardAnimation) {
-      this.takeCardAnimation = true;
-      this.currentCard = this.game.stack.pop() || '';
-      console.log(this.currentCard);
+    console.log(this.pickCardAnimation);
+    if (!this.pickCardAnimation) {
+      this.pickCardAnimation = true;
+      if (this.game.stack.length > 0) {
+        this.currentCard = this.game.stack.pop()!;
+      }
       
+      console.log('true???  ', this.pickCardAnimation);
+      console.log(this.currentCard);
+
 
       setTimeout(() => {
+        this.pickCardAnimation = false;
         this.game.playedCards.push(this.currentCard);
-        this.takeCardAnimation = false;
+        console.log('false????   ', this.pickCardAnimation);
       }, 1000);
     }
   }
 
   openDialog(): void {
     const dialogRef = this.dialog.open(DialogAddPlayerComponent, {
-      data: { name: this.name(), animal: this.animal() },
+      data: { name: this.name() },
     });
 
     dialogRef.afterClosed().subscribe((name: string) => {
@@ -60,6 +62,7 @@ export class GameComponent {
       console.log(this.game.players);
     });
   }
+
 }
 
 
