@@ -9,6 +9,7 @@ import { Input } from '@angular/core';
 })
 export class PlayerComponent {
 
-  @Input()
-  name: string = 'Peter';
+  @Input() name: string = 'Peter';
+  @Input() playerActive: boolean = false;
 }
+
